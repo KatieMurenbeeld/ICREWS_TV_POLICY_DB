@@ -24,21 +24,60 @@ sheet_id <- "https://docs.google.com/spreadsheets/d/1jn_TqyXtymTnzBb16T_ksquF8WD
 #sheet_id <- "https://docs.google.com/spreadsheets/d/1Jc_PqvodlLBQkXpZfkf85NNbFPprCAMWRiMK6NeHNro/edit#gid=0"
 
 # the fields need to match the google sheet column headers AND the input IDs
-fields <- c("state", "county",	"city")
+fields <- c("state", "county",	"community", "community_type", "water_district",
+            "highway_district", "department", "official_name", "official_position", 
+            "official_email", "official_phone", "official_elected_appointed", 
+            "official_term", "official_year_start", "doc_name", 
+            "doc_year_written", "doc_year_adopted", "doc_type",
+            "doc_address_water_supply", "doc_address_energy_supply",
+            "doc_address_water_restrict", "doc_address_energy_restrict",
+            "spatial_data_type", "spatial_name", "spatial_county", 
+            "spatial_city", "population", "population_year", "comments")
 
-state_list <- c("Idaho", 
-                "Oregon", 
-                "Washington", 
-                "Montana")
+state_list <- c("Idaho")
 
 county_list <- c("Ada", 
                  "Canyon")
 
-city_list <- c("Boise",
-               "Meridian",
-               "Kuna",
-               "Nampa",
-               "Caldwell")
+community_list <- c("Boise",
+                    "Meridian",
+                    "Eagle",
+                    "Kuna",
+                    "Garden City",
+                    "Star",
+                    "Avimor",
+                    "Hidden Springs",
+                    "Mora",
+                    "Pleasant Valley", 
+                    "Sonna",
+                    "Snake River Birds of Prey",
+                    "Boise National Forest",
+                    "National Gaurd Maneuver Area",
+                    "Caldwell",
+                    "Greenleaf",
+                    "Melba",
+                    "Middleton",
+                    "Nampa", 
+                    "Notus", 
+                    "Parma", 
+                    "Wider",
+                    "Bowmont",
+                    "Huston",
+                    "Roswell",
+                    "Sunnyslope",
+                    "Walters Ferry",
+                    "Deer Flat Wildlife Refuge"
+                    )
+
+community_type_list <- c("City",
+                         "Census_Designated",
+                         "Unincorporated",
+                         "Natural Protected Area",
+                         "HOA")
+
+water_district_list <- c("")
+
+
 
 # Define function to use in server logic
 table <- "entries"
