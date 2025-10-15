@@ -18,21 +18,19 @@ library(googlesheets4)
 
 gs4_auth(cache = ".secrets", email = "katiemurenbeeld@boisestate.edu")
 
-sheet_id <- "https://docs.google.com/spreadsheets/d/1jn_TqyXtymTnzBb16T_ksquF8WDW2JMzq7AmbQf-jZ8/edit?gid=0#gid=0"
+#sheet_id <- "https://docs.google.com/spreadsheets/d/1jn_TqyXtymTnzBb16T_ksquF8WDW2JMzq7AmbQf-jZ8/edit?gid=0#gid=0"
+sheet_id <- "https://docs.google.com/spreadsheets/d/1qLphiarm80vDPjZNx1AAWpYaU-ik8gnyk_6ok2QKX28/edit?gid=0#gid=0"
 
 # The article coding sheet
 #sheet_id <- "https://docs.google.com/spreadsheets/d/1Jc_PqvodlLBQkXpZfkf85NNbFPprCAMWRiMK6NeHNro/edit#gid=0"
 
 # the fields need to match the google sheet column headers AND the input IDs
 fields <- c("state", "county",	"community", "community_type", "water_district",
-            "highway_district", "department", "official_name", "official_position", 
-            "official_email", "official_phone", "official_elected_appointed", 
-            "official_term", "official_year_start", "doc_name", 
-            "doc_year_written", "doc_year_adopted", "doc_type",
-            "doc_address_water_supply", "doc_address_energy_supply",
+            "highway_district", "doc_name", "doc_link",
+            "doc_year_written", "doc_year_adopted", "doc_year_amended", 
+            "doc_type", "doc_address_water_supply", "doc_address_energy_supply",
             "doc_address_water_restrict", "doc_address_energy_restrict",
-            "spatial_data_type", "spatial_name", "spatial_county", 
-            "spatial_city", "population", "population_year", "comments")
+            "spatial_data_type", "spatial_name", "comments")
 
 state_list <- c("Idaho")
 
@@ -66,16 +64,29 @@ community_list <- c("Boise",
                     "Roswell",
                     "Sunnyslope",
                     "Walters Ferry",
-                    "Deer Flat Wildlife Refuge"
+                    "Deer Flat Wildlife Refuge", 
+                    "NA"
                     )
 
 community_type_list <- c("City",
-                         "Census_Designated",
+                         "Planned Community",
+                         "Census Designated",
                          "Unincorporated",
                          "Natural Protected Area",
-                         "HOA")
+                         "HOA", 
+                         "NA")
 
-water_district_list <- c("")
+water_district_list <- c("NA")
+
+
+yes_no_list <- c("Yes",
+                "No", 
+                "Unsure")
+
+spatial_type_list <- c("raster",
+                       "vector",
+                       "tabular",
+                       "NA")
 
 
 
@@ -106,9 +117,37 @@ shinyApp(
     selectInput("county", "County", 
                 choices = county_list, 
                 selected = ""),
-    selectInput("city", "City", 
-                choices = city_list, 
+    selectInput("community", "Community", 
+                choices = community_list, 
                 selected = ""),
+    selectInput("community_type", "Community Type", 
+                choices = community_type_list, 
+                selected = ""),
+    textInput("water_district", "Water District", value = "NA"),
+    textInput("highway_district", "Highway District", value = "NA"),
+    textInput("doc_name", "Document Name", value = ""),
+    textInput("doc_link", "Document URL", value = ""),
+    numericInput("doc_year_written", "Year Doc Written", value = 1999),
+    numericInput("doc_year_adopted", "Year Doc Adopted", value = 1999),
+    numericInput("doc_year_amended", "Year Doc Amended", value = 1999),
+    textInput("doc_type", "Document Type", value = ""),
+    selectInput("doc_address_water_supply", "Addresses Water Supply?", 
+                choices = yes_no_list,
+                selected = ""),
+    selectInput("doc_address_energy_supply", "Addresses Energy Supply?", 
+                choices = yes_no_list,
+                selected = ""),
+    selectInput("doc_address_water_restrict", "Addresses Water Restriction?", 
+                choices = yes_no_list,
+                selected = ""),
+    selectInput("doc_address_energy_restrict", "Addresses Energy Restriction?", 
+                choices = yes_no_list,
+                selected = ""),
+    selectInput("spatial_data_type", "Spatial Data Type",
+                choices = spatial_type_list, 
+                selected = ""),
+    textInput("spatial_name", "Spatial Data Name", value = "NA"),
+    textInput("comments", "Comments", value = "no comments"),
     actionButton("submit", "Submit"),
   ),
   
