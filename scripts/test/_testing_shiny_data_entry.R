@@ -35,7 +35,8 @@ fields <- c("state", "county",	"community", "community_type", "water_district",
 state_list <- c("Idaho")
 
 county_list <- c("Ada", 
-                 "Canyon")
+                 "Canyon", 
+                 "NA")
 
 community_list <- c("Boise",
                     "Meridian",
@@ -129,7 +130,7 @@ shinyApp(
     textInput("doc_link", "Document URL", value = ""),
     numericInput("doc_year_written", "Year Doc Written", value = 1999),
     numericInput("doc_year_adopted", "Year Doc Adopted", value = 1999),
-    numericInput("doc_year_amended", "Year Doc Amended", value = 1999),
+    numericInput("doc_year_amended", "Year Doc Last Amended", value = 1999),
     textInput("doc_type", "Document Type", value = ""),
     selectInput("doc_address_water_supply", "Addresses Water Supply?", 
                 choices = yes_no_list,
